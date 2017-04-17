@@ -1,0 +1,15 @@
+{
+  "name": "aula6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "aula6.js",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juliano da Silva Barbosa",
+  "license": "ISC"
+}

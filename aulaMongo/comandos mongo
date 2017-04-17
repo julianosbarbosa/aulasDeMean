@@ -1,0 +1,71 @@
+console 1
+mongod - start servidor banco
+
+AULA 1
+console 2
+
+mongo - entra no banco
+show dbs - mostra seu bancos
+use db_finance - ele muda o banco
+db - avisa qual é seu banco atual
+db.createCollection('billingCycles') - cria uma coleção e cria o banco se ainda nao estiver criado
+show collections - mostra as coleções
+db.billingCycles.drop() - exclue a coleção e se todas as coleções foram excluidas o banco é excluido automaticamente
+
+AULA 2
+console 2
+
+db.billingCycles.insert({name:"Janeiro/17", month: 1, year:2017}) - insere dados no banco mesmo que nao exista uma coleção ele cria automaticamente
+db.billingCycles.save({name:"Fevereiro/17", month: 2, year:2017}) - insere ou altera dados no banco mesmo que nao exista uma coleção ele cria automaticamente
+db.billingCycles.insert({
+    name: "Março/17",
+    month: 3,
+    year: 2017,
+    credits: [
+        {name: "Salario", value: 5000}
+    ],
+    debts:[
+        {name: "Luz", value: 100, status: "PAGO"},
+        {name: "Telefone", value:100, status:"PENDENTE"}
+    ]
+})  - insere dados em uma collections com varios documentos 
+
+AULA 3
+console 2
+
+db.billingCycles.find() - mostra todos documentos dentro da coleção
+db.billingCycles.find().pretty() -mostra todos documentos dentro da coleção organizado
+db.billingCycles.findOne({month:2}) - mostra somente um objeto filtrado se passar vazio vem o primeiro dado da coleção
+db.billingCycles.find({
+    $or:[
+        {month: 1},
+        {month: 2}
+    ]
+}).pretty() - operado ou mostra os objetos filtrados
+db.billingCycles.find({credits:{$exists:true}}).pretty() - mostra somente os documentos que existe o atributo desejado
+db.billingCycles.find({year: 2017}).skip(1).limit(1) - faz uma pesquisa pulado o indice e dando um limite nos resultados
+db.billingCycles.find({credits:{$exists:true}},{_id:0, name:1}).pretty() - para fazer uma pesquisa por somente um atributo
+
+AULA 4
+console 2
+
+db.billingCycles.aggregate([{
+    $project:{credit:{$sum: "$credits.value"},debt:{$sum:"$debts.value"}},
+    }, {
+    $group:{_id:null, credit:{$sum: "$credit"}, debt:{$sum: "$debt"}}
+}]) - o project passa a entrada dos dados e a condiçao que ele vai ser agregado ao outro e o group passa a saida dos dados e como vao ou nao ser salvos
+
+AULA 5
+console 2
+
+db.billingCycles.update(
+    {$and:[{month:1},{year:2017}]},
+    {$set:{credits:[{name:"Salario", value:5000}]}}
+) - pra fazer update defino uma pesquisa para o documento que vai ser mudado e faço um set para alteração
+
+AULA 6
+console 2
+
+db.billingCycles.count() - conta quantos documentos tem na minha coleção
+db.billingCycles.remove({year:2017}, 1) - exclui o primeiro documento com o ano de 2017
+db.dropDatabase() - deleta o banco de dados que estamos usando

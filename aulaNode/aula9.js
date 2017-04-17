@@ -1,0 +1,1 @@
+require('./aula9stdInOut')

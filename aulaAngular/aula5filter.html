@@ -1,31 +1,37 @@
-<html lang="en"  ng-app="app"> <!--onde o angular vai ser aplicado no html-->
- <head>
+<html lang="en" ng-app="app">
+<!--onde o angular vai ser aplicado no html-->
+
+<head>
   <meta charset="utf-8">
   <title>Fundamentos de Angula</title>
   <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
   <script type="text/javascript">
-    angular.module('app',[]) //nome do modulo é o nome da aplicação e depois é seguido de array com as dependencias
-    angular.module('app').filter('upper',function(){ //aplica filtro uppercase
-      return function(input){
+    angular.module('app', []) //nome do modulo é o nome da aplicação e depois é seguido de array com as dependencias
+    angular.module('app').filter('upper', function () { //aplica filtro uppercase
+      return function (input) {
         return input.toUpperCase()
       }
     })
-    angular.module('app').controller('MeuController',[function(){ //acessa direto do controller sem o scope 
-    //no controller primeiro chame o modulo siguido do controler 
-    //com this e outras dependencias e uma função 
+    angular.module('app').controller('MeuController', [function () { //acessa direto do controller sem o scope 
+      //no controller primeiro chame o modulo siguido do controler 
+      //com this e outras dependencias e uma função 
       const self = this
       self.value = "texto"
 
     }])
-
   </script>
 
 </head>
-    <body>
-      <div ng-controller="MeuController as ctrl"> <!--ng-controller Avisa que vai usar tal controller-->
-         <h1>{{ctrl.value | upper}}</h1><!--Variavel do Binding pra usa o filtro pipe o nome do filtro-->
-         <input ng-model="ctrl.value"/> <!-- envia e recebe valor-->
-        
-      </div>
-    </body>
+
+<body>
+  <div ng-controller="MeuController as ctrl">
+    <!--ng-controller Avisa que vai usar tal controller-->
+    <h1>{{ctrl.value | upper}}</h1>
+    <!--Variavel do Binding pra usa o filtro pipe o nome do filtro-->
+    <input ng-model="ctrl.value" />
+    <!-- envia e recebe valor-->
+
+  </div>
+</body>
+
 </html>

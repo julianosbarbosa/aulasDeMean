@@ -1,0 +1,31 @@
+<html lang="en" ng-app="app">
+<!--onde o angular vai ser aplicado no html-->
+
+<head>
+  <meta charset="utf-8">
+  <title>Fundamentos de Angula</title>
+  <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+  <script type="text/javascript">
+    angular.module('app', []) //nome do modulo
+    angular.module('app').service('utils', function () { //cria service
+      this.upper = function upper(input) { //this espoe a funçao upper para as outras funçoes
+        return input.toUpperCase()
+      }
+
+    })
+    angular.module('app').controller('MeuController', ['utils', function (utils) {
+      const self = this //controller com this no lugar de scope padrao jhon papa
+      self.value = utils.upper("texto")
+    }])
+  </script>
+
+</head>
+
+<body>
+  <div ng-controller="MeuController as ctrl">
+    <h1>{{ctrl.value}}</h1>
+  </div>
+
+</body>
+
+</html>

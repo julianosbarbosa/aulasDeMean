@@ -1,27 +1,35 @@
-<html lang="en"  ng-app="app"> <!--onde o angular vai ser aplicado no html-->
- <head>
+<html lang="en" ng-app="app">
+<!--onde o angular vai ser aplicado no html-->
+
+<head>
   <meta charset="utf-8">
   <title>Fundamentos de Angula</title>
   <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
   <script type="text/javascript">
-    angular.module('app',[]) //nome do modulo é o nome da aplicação e depois é seguido de array com as dependencias
-    angular.module('app').controller('MeuController',[function(){ //acessa direto do controller sem o scope 
-    //no controller primeiro chame o modulo siguido do controler 
-    //com this e outras dependencias e uma função que devoleve scope
-      const self=this
-      self.value=10
-      self.inc=function(){
-      self.value++
+    angular.module('app', []) //nome do modulo é o nome da aplicação e depois é seguido de array com as dependencias
+    angular.module('app').controller('MeuController', [function () { //acessa direto do controller sem o scope 
+      //no controller primeiro chame o modulo siguido do controler 
+      //com this e outras dependencias e uma função que devoleve scope
+      const self = this
+      self.value = 10
+      self.inc = function () {
+        self.value++
       }
     }])
   </script>
 
 </head>
-    <body>
-      <div ng-controller="MeuController as ctrl"> <!--ng-controller Avisa que vai usar tal controller-->
-         <h1>{{ctrl.value}}</h1><!--Variavel do Binding-->
-         <input ng-model="ctrl.value"/> <!-- envia e recebe valor-->
-         <button ng-click="ctrl.inc()">Inc</button><!-- ng-click chama uma função-->
-      </div>
-    </body>
+
+<body>
+  <div ng-controller="MeuController as ctrl">
+    <!--ng-controller Avisa que vai usar tal controller-->
+    <h1>{{ctrl.value}}</h1>
+    <!--Variavel do Binding-->
+    <input ng-model="ctrl.value" />
+    <!-- envia e recebe valor-->
+    <button ng-click="ctrl.inc()">Inc</button>
+    <!-- ng-click chama uma função-->
+  </div>
+</body>
+
 </html>

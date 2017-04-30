@@ -1,0 +1,34 @@
+<html lang="en" ng-app="app">
+<!--onde o angular vai ser aplicado no html-->
+
+<head>
+  <meta charset="utf-8">
+  <title>Fundamentos de Angula</title>
+  <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+  <script type="text/javascript">
+    angular.module('app', []) //nome do modulo
+    angular.module('app').component('field', {
+      bindings: {
+        id: '@',
+        label: '@',
+        model: '=' //bindings objetos que vao ser usados em meu template
+      },
+      template: `
+      <label for="{{$ctrl.id}}">{{$ctrl.label}}</label>
+      <input id="{{$ctrl.id}}" ng-model="$ctrl.model">
+      `}) //meu template
+    angular.module('app').controller('MeuController', function () {
+      const self = this
+      self.name = "Antonio"
+    })
+  </script>
+</head>
+
+<body>
+  <div ng-controller="MeuController as ctrl">
+    <h1>{{ctrl.name}}</h1>
+    <field id="nome" label="Nome" model="ctrl.name"></field>
+  </div>
+</body>
+
+</html>

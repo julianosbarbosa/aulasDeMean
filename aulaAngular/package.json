@@ -1,0 +1,14 @@
+{
+  "name": "aula_angular",
+  "version": "1.0.0",
+  "description": "Exercicios angular",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juliano da Silva Barbosa",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.4"
+  }
+}

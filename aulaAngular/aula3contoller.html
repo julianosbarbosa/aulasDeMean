@@ -1,0 +1,26 @@
+<html lang="en"  ng-app="app"> <!--onde o angular vai ser aplicado no html-->
+ <head>
+  <meta charset="utf-8">
+  <title>Fundamentos de Angula</title>
+  <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+  <script type="text/javascript">
+    angular.module('app',[]) //nome do modulo é o nome da aplicação e depois é seguido de array com as dependencias
+    angular.module('app').controller('MeuController',['$scope',function($scope){ 
+    //no controller primeiro chame o modulo siguido do controler 
+    //com scope e outras dependencias e uma função que devoleve scope
+      $scope.value=10
+      $scope.inc=function(){
+        $scope.value++
+      }
+    }])
+  </script>
+
+</head>
+    <body>
+      <div ng-controller="MeuController"> <!--ng-controller Avisa que vai usar tal controller-->
+         <h1>{{value}}</h1><!--Variavel do Binding-->
+         <input ng-model="value"/> <!-- envia e recebe valor-->
+         <button ng-click="inc()">Inc</button><!-- ng-click chama uma função-->
+      </div>
+    </body>
+</html>
